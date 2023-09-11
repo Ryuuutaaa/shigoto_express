@@ -2,16 +2,38 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
+// gunakan ejs
+app.set("view engine", "ejs");
+
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  const mahasiswa = [
+    {
+      nama: "ryuta",
+      email: "rafi@gmail.com",
+    },
+    {
+      nama: "ryuna",
+      email: "ryuna@gmail.com",
+    },
+    {
+      nama: "kyuza",
+      email: "kyuza@gmail.com",
+    },
+  ];
+
+  res.render("index", {
+    nama: "Ryutaaaa",
+    title: "Home",
+    mahasiswa,
+  });
 });
 
 app.get("/about", (req, res) => {
-  res.sendFile("about.html", { root: __dirname });
+  res.render("about");
 });
 
 app.get("/contact", (req, res) => {
-  res.sendFile("contact.html", { root: __dirname });
+  res.render("contact");
 });
 
 app.get("/product/:id", (req, res) => {
